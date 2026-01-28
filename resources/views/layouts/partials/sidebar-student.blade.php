@@ -1,19 +1,20 @@
 {{-- Left sidebar to student --}}
 <!-- Brand Logo -->
-<a href="#" class="logo">
+<a href="{{ route('student_dashboard') }}" class="logo">
     <span class="logo-light">
         <span class="logo-lg">
-            <img src="{{ Auth::user()->profile_photo && file_exists(public_path(Auth::user()->profile_photo)) 
-                            ? asset(Auth::user()->profile_photo) 
-                            : asset('back-end/assets/images/logo-main.png') }}" style="height: 2rem"
-                alt="logo">
+            <img src="{{ asset('images/studac-logo.svg') }}" style="height: 2rem" alt="Studac Logo">
         </span>
-        <span class="logo-sm"><img src="{{asset('back-end/assets/images/icon-sm.png')}}" style="height: 2rem" alt="small logo"></span>
+        <span class="logo-sm">
+            <img src="{{ asset('images/studac-icon.svg') }}" style="height: 2rem" alt="Studac Icon">
+        </span>
     </span>
 
     <span class="logo-dark">
-        <span class="logo-lg"><img src="{{ asset('back-end/assets/images/logo-main.png') }}" alt="dark logo"></span>
-        <span class="logo-sm"><img src="{{ asset('back-end/assets/images/icon-sm.png') }}" alt="small logo"></span>
+        <span class="logo-lg"><img src="{{ asset('images/studac-logo.svg') }}" style="height: 2rem"
+                alt="Studac Logo"></span>
+        <span class="logo-sm"><img src="{{ asset('images/studac-icon.svg') }}" style="height: 2rem"
+                alt="Studac Icon"></span>
     </span>
 </a>
 
@@ -30,7 +31,7 @@
 <div data-simplebar>
     <!--- Sidenav Menu -->
     <ul class="side-nav">
-        
+
         <li class="side-nav-item">
             <a href="{{ route('student_dashboard') }}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
@@ -43,7 +44,7 @@
                 <span class="menu-text">Countries</span>
             </a>
         </li>
-       <li class="side-nav-item">
+        <li class="side-nav-item">
             <a href="{{ route('student_university_list') }}" class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-map-heart"></i></span>
                 <span class="menu-text">University</span>
@@ -56,7 +57,8 @@
             </a>
         </li>
         <li class="side-nav-item">
-           <a data-bs-toggle="collapse" href="#sidebarMyRecord" aria-expanded="false" aria-controls="sidebarMyRecord" class="side-nav-link">
+            <a data-bs-toggle="collapse" href="#sidebarMyRecord" aria-expanded="false" aria-controls="sidebarMyRecord"
+                class="side-nav-link">
                 <span class="menu-icon"><i class="ti ti-school"></i></span>
                 <span class="menu-text">My Record</span>
                 <span class="menu-arrow"></span>
