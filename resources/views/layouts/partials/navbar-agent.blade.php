@@ -4,8 +4,9 @@
         <!-- Brand Logo -->
         <a href="index.html" class="logo">
             <span class="logo-light">
-                <span class="logo-lg"><img src="{{asset('back-end/assets/images/logo.png')}}" alt="logo"></span>
-                <span class="logo-sm"><img src="{{asset('back-end/assets/images/logo-sm.png')}}" alt="small logo"></span>
+                <span class="logo-lg"><img src="{{ asset('back-end/assets/images/logo.png') }}" alt="logo"></span>
+                <span class="logo-sm"><img src="{{ asset('back-end/assets/images/logo-sm.png') }}"
+                        alt="small logo"></span>
             </span>
 
             <span class="logo-dark">
@@ -200,25 +201,28 @@
 
         <!-- Button Trigger Customizer Offcanvas -->
         <div class="topbar-item d-none d-sm-flex">
-            <button class="topbar-link" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" type="button">
+            {{-- <button class="topbar-link" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" type="button">
                 <i class="ti ti-settings fs-22"></i>
-            </button>
+            </button> --}}
         </div>
 
         <!-- Light/Dark Mode Button -->
         <div class="topbar-item d-none d-sm-flex">
             <button class="topbar-link" id="light-dark-mode" type="button">
-                <i class="ti ti-moon fs-22"></i>
+                <i class="ti ti-moon fs-22 theme-icon-dark"></i>
+                <i class="ti ti-sun fs-22 theme-icon-light"></i>
             </button>
         </div>
 
         <!-- User Dropdown -->
         <div class="topbar-item nav-user">
             <div class="dropdown">
-                <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown" data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ Auth::user()->profile_photo && file_exists(public_path(Auth::user()->profile_photo)) 
-                    ? asset(Auth::user()->profile_photo) 
-                    : asset('back-end/assets/images/users/avatar-1.jpg') }}" width="32" class="rounded-circle me-lg-2 d-flex" alt="user-image">
+                <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown"
+                    data-bs-offset="0,19" type="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="{{ Auth::user()->profile_photo && file_exists(public_path(Auth::user()->profile_photo))
+                        ? asset(Auth::user()->profile_photo)
+                        : asset('back-end/assets/images/users/avatar-1.jpg') }}"
+                        width="32" class="rounded-circle me-lg-2 d-flex" alt="user-image">
                     <span class="d-lg-flex flex-column gap-1 d-none">
                         {{ Auth::user()->name ?? 'Guest' }}
                     </span>
@@ -247,7 +251,7 @@
                     </a> --}}
 
                     <a href="#" class="dropdown-item fw-semibold text-danger"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="ti ti-logout me-1 fs-17 align-middle"></i>
                         <span class="align-middle">Sign Out</span>
                     </a>

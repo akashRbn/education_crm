@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 28, 2026 at 08:41 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Jan 28, 2026 at 09:29 AM
+-- Server version: 9.2.0
+-- PHP Version: 8.3.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `glodex_crm`
+-- Database: `ed_crm`
 --
 
 -- --------------------------------------------------------
@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `applications` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Admin Panel user''s id to whom this application will pop up/ display',
-  `course_id` bigint(20) UNSIGNED NOT NULL,
-  `student_id` bigint(20) UNSIGNED NOT NULL,
-  `sent_by` varchar(255) DEFAULT NULL,
-  `application_code` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `created_by` int(11) DEFAULT NULL COMMENT 'the id of the person who is creating this application/ auth id',
-  `intake_year` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL COMMENT 'Admin Panel user''s id to whom this application will pop up/ display',
+  `course_id` bigint UNSIGNED NOT NULL,
+  `student_id` bigint UNSIGNED NOT NULL,
+  `sent_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `application_code` int NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `created_by` int DEFAULT NULL COMMENT 'the id of the person who is creating this application/ auth id',
+  `intake_year` text COLLATE utf8mb4_unicode_ci,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -58,9 +58,9 @@ INSERT INTO `applications` (`id`, `user_id`, `course_id`, `student_id`, `sent_by
 --
 
 CREATE TABLE `application_statuses` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `status_name` varchar(255) DEFAULT NULL,
-  `status_order` int(11) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `status_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_order` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -91,9 +91,9 @@ INSERT INTO `application_statuses` (`id`, `status_name`, `status_order`, `create
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) NOT NULL,
-  `value` mediumtext NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('spatie.permission.cache', 'a:3:{s:5:\"alias\";a:4:{s:1:\"a\";s:2:\"id\";s:1:\"b\";s:4:\"name\";s:1:\"c\";s:10:\"guard_name\";s:1:\"r\";s:5:\"roles\";}s:11:\"permissions\";a:40:{i:0;a:4:{s:1:\"a\";i:1;s:1:\"b\";s:11:\"Create User\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:1;a:4:{s:1:\"a\";i:2;s:1:\"b\";s:9:\"View User\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:2;a:4:{s:1:\"a\";i:3;s:1:\"b\";s:11:\"Delete User\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:3;a:4:{s:1:\"a\";i:4;s:1:\"b\";s:14:\"Create Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:4;a:4:{s:1:\"a\";i:5;s:1:\"b\";s:12:\"View Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:5;a:4:{s:1:\"a\";i:6;s:1:\"b\";s:12:\"Edit Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:6;a:4:{s:1:\"a\";i:7;s:1:\"b\";s:14:\"Delete Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:7;a:4:{s:1:\"a\";i:8;s:1:\"b\";s:17:\"Create University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:8;a:4:{s:1:\"a\";i:9;s:1:\"b\";s:15:\"View University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:9;a:4:{s:1:\"a\";i:10;s:1:\"b\";s:15:\"Edit University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:10;a:4:{s:1:\"a\";i:11;s:1:\"b\";s:17:\"Delete University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:11;a:4:{s:1:\"a\";i:12;s:1:\"b\";s:13:\"Create Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:12;a:4:{s:1:\"a\";i:13;s:1:\"b\";s:11:\"View Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:13;a:4:{s:1:\"a\";i:14;s:1:\"b\";s:11:\"Edit Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:14;a:4:{s:1:\"a\";i:15;s:1:\"b\";s:13:\"Delete Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:15;a:4:{s:1:\"a\";i:16;s:1:\"b\";s:18:\"Create Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:16;a:4:{s:1:\"a\";i:17;s:1:\"b\";s:16:\"View Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:17;a:4:{s:1:\"a\";i:18;s:1:\"b\";s:16:\"Edit Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:18;a:4:{s:1:\"a\";i:19;s:1:\"b\";s:14:\"Create Partner\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:19;a:4:{s:1:\"a\";i:20;s:1:\"b\";s:12:\"View Partner\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:20;a:4:{s:1:\"a\";i:21;s:1:\"b\";s:14:\"Delete Partner\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:21;a:4:{s:1:\"a\";i:22;s:1:\"b\";s:14:\"Create Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:22;a:4:{s:1:\"a\";i:23;s:1:\"b\";s:12:\"View Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:23;a:4:{s:1:\"a\";i:24;s:1:\"b\";s:12:\"Edit Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:24;a:4:{s:1:\"a\";i:25;s:1:\"b\";s:12:\"Create Roles\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:25;a:4:{s:1:\"a\";i:26;s:1:\"b\";s:10:\"View Roles\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:26;a:4:{s:1:\"a\";i:27;s:1:\"b\";s:17:\"Create Permission\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:27;a:4:{s:1:\"a\";i:28;s:1:\"b\";s:15:\"View Permission\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:28;a:4:{s:1:\"a\";i:29;s:1:\"b\";s:20:\"View Partner Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:29;a:4:{s:1:\"a\";i:30;s:1:\"b\";s:20:\"Edit Partner Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:30;a:4:{s:1:\"a\";i:31;s:1:\"b\";s:24:\"View Partner Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:31;a:4:{s:1:\"a\";i:32;s:1:\"b\";s:24:\"Edit Partner Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:32;a:4:{s:1:\"a\";i:33;s:1:\"b\";s:20:\"View All Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:33;a:4:{s:1:\"a\";i:34;s:1:\"b\";s:20:\"Edit All Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:34;a:3:{s:1:\"a\";i:35;s:1:\"b\";s:25:\"Create Assign Application\";s:1:\"c\";s:3:\"web\";}i:35;a:4:{s:1:\"a\";i:36;s:1:\"b\";s:20:\"View Pending Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:36;a:4:{s:1:\"a\";i:37;s:1:\"b\";s:14:\"Delete Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:37;a:3:{s:1:\"a\";i:38;s:1:\"b\";s:2:\"on\";s:1:\"c\";s:3:\"web\";}i:38;a:4:{s:1:\"a\";i:39;s:1:\"b\";s:22:\"Delete Partner Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:39;a:4:{s:1:\"a\";i:40;s:1:\"b\";s:10:\"Edit Roles\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}}s:5:\"roles\";a:3:{i:0;a:3:{s:1:\"a\";i:1;s:1:\"b\";s:10:\"SuperAdmin\";s:1:\"c\";s:3:\"web\";}i:1;a:3:{s:1:\"a\";i:2;s:1:\"b\";s:3:\"BDM\";s:1:\"c\";s:3:\"web\";}i:2;a:3:{s:1:\"a\";i:3;s:1:\"b\";s:13:\"CourseCreator\";s:1:\"c\";s:3:\"web\";}}}', 1769662620);
+('spatie.permission.cache', 'a:3:{s:5:\"alias\";a:4:{s:1:\"a\";s:2:\"id\";s:1:\"b\";s:4:\"name\";s:1:\"c\";s:10:\"guard_name\";s:1:\"r\";s:5:\"roles\";}s:11:\"permissions\";a:40:{i:0;a:4:{s:1:\"a\";i:1;s:1:\"b\";s:11:\"Create User\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:1;a:4:{s:1:\"a\";i:2;s:1:\"b\";s:9:\"View User\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:2;a:4:{s:1:\"a\";i:3;s:1:\"b\";s:11:\"Delete User\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:3;a:4:{s:1:\"a\";i:4;s:1:\"b\";s:14:\"Create Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:4;a:4:{s:1:\"a\";i:5;s:1:\"b\";s:12:\"View Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:5;a:4:{s:1:\"a\";i:6;s:1:\"b\";s:12:\"Edit Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:6;a:4:{s:1:\"a\";i:7;s:1:\"b\";s:14:\"Delete Country\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:7;a:4:{s:1:\"a\";i:8;s:1:\"b\";s:17:\"Create University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:8;a:4:{s:1:\"a\";i:9;s:1:\"b\";s:15:\"View University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:9;a:4:{s:1:\"a\";i:10;s:1:\"b\";s:15:\"Edit University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:10;a:4:{s:1:\"a\";i:11;s:1:\"b\";s:17:\"Delete University\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:11;a:4:{s:1:\"a\";i:12;s:1:\"b\";s:13:\"Create Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:12;a:4:{s:1:\"a\";i:13;s:1:\"b\";s:11:\"View Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:13;a:4:{s:1:\"a\";i:14;s:1:\"b\";s:11:\"Edit Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}}i:14;a:4:{s:1:\"a\";i:15;s:1:\"b\";s:13:\"Delete Course\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:15;a:4:{s:1:\"a\";i:16;s:1:\"b\";s:18:\"Create Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:16;a:4:{s:1:\"a\";i:17;s:1:\"b\";s:16:\"View Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:17;a:4:{s:1:\"a\";i:18;s:1:\"b\";s:16:\"Edit Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:18;a:4:{s:1:\"a\";i:19;s:1:\"b\";s:14:\"Create Partner\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:19;a:4:{s:1:\"a\";i:20;s:1:\"b\";s:12:\"View Partner\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:20;a:4:{s:1:\"a\";i:21;s:1:\"b\";s:14:\"Delete Partner\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:21;a:4:{s:1:\"a\";i:22;s:1:\"b\";s:14:\"Create Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:22;a:4:{s:1:\"a\";i:23;s:1:\"b\";s:12:\"View Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:23;a:4:{s:1:\"a\";i:24;s:1:\"b\";s:12:\"Edit Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:24;a:4:{s:1:\"a\";i:25;s:1:\"b\";s:12:\"Create Roles\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:25;a:4:{s:1:\"a\";i:26;s:1:\"b\";s:10:\"View Roles\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:26;a:4:{s:1:\"a\";i:27;s:1:\"b\";s:17:\"Create Permission\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:27;a:4:{s:1:\"a\";i:28;s:1:\"b\";s:15:\"View Permission\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:28;a:4:{s:1:\"a\";i:29;s:1:\"b\";s:20:\"View Partner Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:29;a:4:{s:1:\"a\";i:30;s:1:\"b\";s:20:\"Edit Partner Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:30;a:4:{s:1:\"a\";i:31;s:1:\"b\";s:24:\"View Partner Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:31;a:4:{s:1:\"a\";i:32;s:1:\"b\";s:24:\"Edit Partner Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:32;a:4:{s:1:\"a\";i:33;s:1:\"b\";s:20:\"View All Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:33;a:4:{s:1:\"a\";i:34;s:1:\"b\";s:20:\"Edit All Application\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:34;a:3:{s:1:\"a\";i:35;s:1:\"b\";s:25:\"Create Assign Application\";s:1:\"c\";s:3:\"web\";}i:35;a:4:{s:1:\"a\";i:36;s:1:\"b\";s:20:\"View Pending Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:36;a:4:{s:1:\"a\";i:37;s:1:\"b\";s:14:\"Delete Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:37;a:3:{s:1:\"a\";i:38;s:1:\"b\";s:2:\"on\";s:1:\"c\";s:3:\"web\";}i:38;a:4:{s:1:\"a\";i:39;s:1:\"b\";s:22:\"Delete Partner Student\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:39;a:4:{s:1:\"a\";i:40;s:1:\"b\";s:10:\"Edit Roles\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}}s:5:\"roles\";a:3:{i:0;a:3:{s:1:\"a\";i:1;s:1:\"b\";s:10:\"SuperAdmin\";s:1:\"c\";s:3:\"web\";}i:1;a:3:{s:1:\"a\";i:2;s:1:\"b\";s:3:\"BDM\";s:1:\"c\";s:3:\"web\";}i:2;a:3:{s:1:\"a\";i:3;s:1:\"b\";s:13:\"CourseCreator\";s:1:\"c\";s:3:\"web\";}}}', 1769677644);
 
 -- --------------------------------------------------------
 
@@ -110,9 +110,9 @@ INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) NOT NULL,
-  `owner` varchar(255) NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -122,16 +122,16 @@ CREATE TABLE `cache_locks` (
 --
 
 CREATE TABLE `countries` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `country_name` varchar(50) NOT NULL,
-  `country_capital` varchar(50) NOT NULL,
-  `country_population` varchar(50) NOT NULL,
-  `country_gdp` varchar(50) NOT NULL,
-  `continent_id` int(11) NOT NULL,
-  `flag` longtext DEFAULT NULL,
-  `cover_photo` longtext DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1 = Active, 0 = Inactive',
+  `id` bigint UNSIGNED NOT NULL,
+  `country_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_capital` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_population` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_gdp` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `continent_id` int NOT NULL,
+  `flag` longtext COLLATE utf8mb4_unicode_ci,
+  `cover_photo` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `status` tinyint NOT NULL DEFAULT '1' COMMENT '1 = Active, 0 = Inactive',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -151,8 +151,8 @@ INSERT INTO `countries` (`id`, `country_name`, `country_capital`, `country_popul
 --
 
 CREATE TABLE `country_continents` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `continent_name` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `continent_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -176,21 +176,21 @@ INSERT INTO `country_continents` (`id`, `continent_name`, `created_at`, `updated
 --
 
 CREATE TABLE `courses` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `university_id` bigint(20) UNSIGNED NOT NULL,
-  `country_id` bigint(20) UNSIGNED NOT NULL,
-  `course_program_id` bigint(20) UNSIGNED NOT NULL,
-  `intake_month_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`intake_month_id`)),
-  `course_name` varchar(255) NOT NULL,
-  `application_fee` varchar(255) NOT NULL,
-  `tuition_fee_per_year` varchar(255) NOT NULL,
-  `program_length` varchar(255) NOT NULL,
-  `course_photo` longtext NOT NULL,
-  `course_details` longtext NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `university_id` bigint UNSIGNED NOT NULL,
+  `country_id` bigint UNSIGNED NOT NULL,
+  `course_program_id` bigint UNSIGNED NOT NULL,
+  `intake_month_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `course_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `application_fee` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tuition_fee_per_year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `program_length` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course_photo` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course_details` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ;
 
 --
 -- Dumping data for table `courses`
@@ -206,8 +206,8 @@ INSERT INTO `courses` (`id`, `university_id`, `country_id`, `course_program_id`,
 --
 
 CREATE TABLE `course_programs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `course_program` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `course_program` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -233,13 +233,13 @@ INSERT INTO `course_programs` (`id`, `course_program`, `created_at`, `updated_at
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -249,8 +249,8 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `intake_months` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `month_name` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `month_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -280,13 +280,13 @@ INSERT INTO `intake_months` (`id`, `month_name`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -296,16 +296,16 @@ CREATE TABLE `jobs` (
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `total_jobs` int(11) NOT NULL,
-  `pending_jobs` int(11) NOT NULL,
-  `failed_jobs` int(11) NOT NULL,
-  `failed_job_ids` longtext NOT NULL,
-  `options` mediumtext DEFAULT NULL,
-  `cancelled_at` int(11) DEFAULT NULL,
-  `created_at` int(11) NOT NULL,
-  `finished_at` int(11) DEFAULT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -315,9 +315,9 @@ CREATE TABLE `job_batches` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -348,9 +348,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `model_has_permissions` (
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -360,9 +360,9 @@ CREATE TABLE `model_has_permissions` (
 --
 
 CREATE TABLE `model_has_roles` (
-  `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `role_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -381,8 +381,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -393,9 +393,9 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `permissions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -453,9 +453,9 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 --
 
 CREATE TABLE `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -476,8 +476,8 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE `role_has_permissions` (
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -489,42 +489,22 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (2, 1),
 (3, 1),
 (4, 1),
-(4, 2),
-(4, 3),
 (5, 1),
-(5, 2),
-(5, 3),
 (6, 1),
-(6, 2),
-(6, 3),
 (7, 1),
 (8, 1),
-(8, 2),
-(8, 3),
 (9, 1),
-(9, 2),
-(9, 3),
 (10, 1),
-(10, 2),
-(10, 3),
 (11, 1),
 (12, 1),
-(12, 2),
-(12, 3),
 (13, 1),
-(13, 2),
-(13, 3),
 (14, 1),
-(14, 2),
-(14, 3),
 (15, 1),
 (16, 1),
 (17, 1),
 (18, 1),
 (19, 1),
-(19, 2),
 (20, 1),
-(20, 2),
 (21, 1),
 (22, 1),
 (23, 1),
@@ -534,22 +514,42 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (27, 1),
 (28, 1),
 (29, 1),
-(29, 2),
 (30, 1),
-(30, 2),
 (31, 1),
-(31, 2),
 (32, 1),
-(32, 2),
 (33, 1),
-(33, 2),
 (34, 1),
-(34, 2),
 (36, 1),
-(36, 2),
 (37, 1),
 (39, 1),
-(40, 1);
+(40, 1),
+(4, 2),
+(5, 2),
+(6, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(19, 2),
+(20, 2),
+(29, 2),
+(30, 2),
+(31, 2),
+(32, 2),
+(33, 2),
+(34, 2),
+(36, 2),
+(4, 3),
+(5, 3),
+(6, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(12, 3),
+(13, 3),
+(14, 3);
 
 -- --------------------------------------------------------
 
@@ -558,12 +558,12 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) DEFAULT NULL,
-  `user_agent` text DEFAULT NULL,
-  `payload` longtext NOT NULL,
-  `last_activity` int(11) NOT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -571,7 +571,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('CdASayfsCHsIccqmMXfVjh4zgSQrPZ3dKpgCSr34', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibTJxWjYxU2ozSEhQWlM1UXNoSjQyYnI0YllocXIwZ09GSm9MWnI3USI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9hZG1pbi1kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6NToiYWxlcnQiO2E6MDp7fX0=', 1769576779);
+('CozZgOd2Lmg8Yl2La8c4Gk2OYiG53iKBilIYLCVp', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNzRCa0gwSFV5R3BUZXBJcWFoMVQ1M3c1RWtPR0p3d3pzc3ppcVREWSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9lZHVjYXRpb25fY3JtLnRlc3QiO319', 1769592504);
 
 -- --------------------------------------------------------
 
@@ -580,13 +580,13 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 --
 
 CREATE TABLE `student_files` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `agent_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `course_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `student_id` bigint(20) UNSIGNED NOT NULL,
-  `application_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `filename` longtext DEFAULT NULL,
-  `filepath` longtext DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `agent_id` bigint UNSIGNED DEFAULT NULL,
+  `course_id` bigint UNSIGNED DEFAULT NULL,
+  `student_id` bigint UNSIGNED NOT NULL,
+  `application_id` bigint UNSIGNED DEFAULT NULL,
+  `filename` longtext COLLATE utf8mb4_unicode_ci,
+  `filepath` longtext COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -609,28 +609,28 @@ INSERT INTO `student_files` (`id`, `agent_id`, `course_id`, `student_id`, `appli
 --
 
 CREATE TABLE `student_infos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT 'student user id',
-  `student_code` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` int NOT NULL COMMENT 'student user id',
+  `student_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dob` date DEFAULT NULL,
-  `passport_no` varchar(255) NOT NULL,
-  `permanent_address` varchar(255) NOT NULL,
-  `fathers_name` varchar(255) NOT NULL,
-  `mothers_name` varchar(255) NOT NULL,
-  `gender` int(11) NOT NULL,
-  `moi` int(11) DEFAULT NULL,
-  `notes` longtext DEFAULT NULL,
-  `english_proficiency` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`english_proficiency`)),
-  `academic_qualifications` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`academic_qualifications`)),
-  `sent_by` varchar(255) DEFAULT NULL COMMENT 'which agent sent this student',
-  `created_by` int(11) NOT NULL COMMENT 'who created this student',
+  `passport_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `permanent_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fathers_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mothers_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` int NOT NULL,
+  `moi` int DEFAULT NULL,
+  `notes` longtext COLLATE utf8mb4_unicode_ci,
+  `english_proficiency` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `academic_qualifications` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `sent_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'which agent sent this student',
+  `created_by` int NOT NULL COMMENT 'who created this student',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ;
 
 --
 -- Dumping data for table `student_infos`
@@ -650,20 +650,20 @@ INSERT INTO `student_infos` (`id`, `user_id`, `student_code`, `name`, `phone`, `
 --
 
 CREATE TABLE `universities` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `country_id` bigint(20) UNSIGNED NOT NULL,
-  `university_name` varchar(255) NOT NULL,
-  `university_city` varchar(150) NOT NULL,
-  `admission_email` varchar(255) NOT NULL,
-  `admission_phone` varchar(20) NOT NULL,
-  `website_link` varchar(255) NOT NULL,
-  `address` text NOT NULL,
-  `commission_for_us` varchar(255) NOT NULL,
-  `commission_for_agent` varchar(255) NOT NULL,
-  `logo` longtext NOT NULL,
-  `cover_image` longtext NOT NULL,
-  `description` longtext NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '1 = Active, 0 = Inactive',
+  `id` bigint UNSIGNED NOT NULL,
+  `country_id` bigint UNSIGNED NOT NULL,
+  `university_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `university_city` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admission_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admission_phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `website_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commission_for_us` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commission_for_agent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logo` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cover_image` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1' COMMENT '1 = Active, 0 = Inactive',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -683,26 +683,26 @@ INSERT INTO `universities` (`id`, `country_id`, `university_name`, `university_c
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `user_type` int(11) DEFAULT NULL COMMENT '1=Admin, 2=Agent, 3=Student',
-  `profile_photo` longtext DEFAULT NULL,
-  `company_logo` longtext DEFAULT NULL,
-  `favicon` longtext DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` int DEFAULT NULL COMMENT '1=Admin, 2=Agent, 3=Student',
+  `profile_photo` longtext COLLATE utf8mb4_unicode_ci,
+  `company_logo` longtext COLLATE utf8mb4_unicode_ci,
+  `favicon` longtext COLLATE utf8mb4_unicode_ci,
   `dob` date DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
-  `marital_status` int(11) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `organization_name` varchar(255) DEFAULT NULL,
-  `user_status` int(11) NOT NULL DEFAULT 1 COMMENT '1=Inactive, 2=Active',
-  `company_description` longtext DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL COMMENT 'User''s id who created this user type',
+  `gender` int DEFAULT NULL,
+  `marital_status` int DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `organization_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_status` int NOT NULL DEFAULT '1' COMMENT '1=Inactive, 2=Active',
+  `company_description` longtext COLLATE utf8mb4_unicode_ci,
+  `created_by` int DEFAULT NULL COMMENT 'User''s id who created this user type',
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -713,9 +713,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `user_type`, `profile_photo`, `company_logo`, `favicon`, `dob`, `gender`, `marital_status`, `address`, `organization_name`, `user_status`, `company_description`, `created_by`, `deleted_at`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Test User', 'test@example.com', NULL, '2026-01-14 02:59:38', '$2y$12$FxyP8NleO/Kl6TUDa0EiAOjThvuRhyUf2H1uGgTKu9NzWH0OqCGZK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 'JSKpyWHpYf', '2026-01-14 02:59:39', '2026-01-14 02:59:39'),
-(2, 'Demo Admin', 'demoadmin@gmail.com', NULL, NULL, '$2y$12$QWizL5n4yE6u4fj6eGkSQeV8sxvVTouVFE0f7vPFxYMku9JN.rtx.', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2026-01-14 03:00:38', '2026-01-14 03:00:38'),
-(3, 'Demo Agent', 'demoagent@gmail.com', NULL, NULL, '$2y$12$OjrLGC4l/yyk6D8V4ncOcua/y2ZmGra/O8FBNL5LSWyQMlMd/Mp5C', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 2, NULL, NULL, '2026-01-14 03:00:39', '2026-01-17 00:54:58'),
-(4, 'Demo Student', 'demostudent@gmail.com', NULL, NULL, '$2y$12$Li8yi9S7UYR8H6Zr3nZii.WDP50UO.RnaweIefNYsy.uu/lZPtNAK', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2026-01-14 03:00:39', '2026-01-14 03:00:39'),
+(2, 'Mr Admin', 'admin@gmail.com', '+1 (462) 719-5163', NULL, '$2y$12$Zr8L5EKbe1N8HG6IDyKLSO0rCxaOu2QgZx10SlSX.ZcpNMVUItNVi', 1, 'storage/profile_photo/1769592227_WLXSTgEM.png', NULL, NULL, '2024-06-20', 2, 2, 'Quod amet Nam maior', 'jecyri', 1, 'Deleniti sunt deseru', NULL, NULL, NULL, '2026-01-14 03:00:38', '2026-01-28 03:23:48'),
+(3, 'Mr Agent', 'agent@gmail.com', NULL, NULL, '$2y$12$Zr8L5EKbe1N8HG6IDyKLSO0rCxaOu2QgZx10SlSX.ZcpNMVUItNVi', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 2, NULL, NULL, '2026-01-14 03:00:39', '2026-01-17 00:54:58'),
+(4, 'Mr Student', 'student@gmail.com', NULL, NULL, '$2y$12$Zr8L5EKbe1N8HG6IDyKLSO0rCxaOu2QgZx10SlSX.ZcpNMVUItNVi', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2026-01-14 03:00:39', '2026-01-14 03:00:39'),
 (5, 'Marshall Head', 'lavymuha@mailinator.com', '+1 (558) 319-3941', NULL, '$2y$12$V5lJqfDBkKqUhFuHwlZlSO44rgAvF9c61Hs9Qcr7j8Np3Nxnkwj7S', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2026-01-14 23:14:15', '2026-01-14 23:14:15'),
 (6, 'Anzam Hossen', 'akash01@gmail.com', '01794971951', NULL, '$2y$12$ANLcmKMzYZVf8zCkOM2w9OJM55BRiyR9KvRL6in5jhrhy5d0dazVK', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Glodex Company', 1, NULL, NULL, NULL, NULL, '2026-01-16 23:51:59', '2026-01-16 23:51:59'),
 (7, 'Demo Agent User', 'demoagent01@gmail.com', '01767908632', NULL, '$2y$12$jtFOoehXlmUPKoPbQApT8OLr.sMz9GZi1T8GHxwGEVUklLBHPJZAW', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Demo Agent Company', 2, NULL, NULL, NULL, NULL, '2026-01-17 00:20:52', '2026-01-17 00:20:58'),
@@ -734,24 +734,24 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `passw
 --
 
 CREATE TABLE `user_infos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `poc` varchar(255) NOT NULL,
-  `website_url` varchar(255) NOT NULL,
-  `social_url` varchar(255) NOT NULL,
-  `whatsapp_no` varchar(255) NOT NULL,
-  `trade_license_number` varchar(255) NOT NULL,
-  `trade_license_copy` longtext NOT NULL,
-  `passport_nid_copy` longtext NOT NULL,
-  `bank_account_name` longtext NOT NULL,
-  `bank_name` longtext NOT NULL,
-  `bank_account_number` longtext NOT NULL,
-  `bank_address` longtext NOT NULL,
-  `swift_code` varchar(255) NOT NULL,
-  `ifsc_code` varchar(255) DEFAULT NULL,
-  `branch_name` varchar(255) DEFAULT NULL,
-  `benificiary_number` varchar(255) DEFAULT NULL,
-  `benificiary_address` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `poc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `website_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `social_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `whatsapp_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trade_license_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trade_license_copy` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `passport_nid_copy` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_account_name` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_name` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_account_number` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_address` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `swift_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ifsc_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `branch_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `benificiary_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `benificiary_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -931,103 +931,103 @@ ALTER TABLE `user_infos`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `application_statuses`
 --
 ALTER TABLE `application_statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `country_continents`
 --
 ALTER TABLE `country_continents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `course_programs`
 --
 ALTER TABLE `course_programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `intake_months`
 --
 ALTER TABLE `intake_months`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student_files`
 --
 ALTER TABLE `student_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student_infos`
 --
 ALTER TABLE `student_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `universities`
 --
 ALTER TABLE `universities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_infos`
 --
 ALTER TABLE `user_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

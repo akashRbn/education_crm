@@ -11,13 +11,27 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('images/studac-favicon.svg') }}">
 
-    <!-- Force Dark Theme for Glassmorphism -->
+    <!-- Theme Initialization - Respects user preference, defaults to dark -->
     <script>
-        // Clear any cached light theme settings and force dark theme
-        sessionStorage.removeItem('__OSEN_CONFIG__');
-        document.documentElement.setAttribute('data-bs-theme', 'dark');
-        document.documentElement.setAttribute('data-menu-color', 'dark');
-        document.documentElement.setAttribute('data-topbar-color', 'dark');
+        (function() {
+            // Check for saved theme preference or default to dark
+            const savedConfig = sessionStorage.getItem('__OSEN_CONFIG__');
+            let theme = 'dark'; // Default theme
+
+            if (savedConfig) {
+                try {
+                    const config = JSON.parse(savedConfig);
+                    theme = config.theme || 'dark';
+                } catch(e) {
+                    theme = 'dark';
+                }
+            }
+
+            // Apply theme immediately to prevent flash
+            document.documentElement.setAttribute('data-bs-theme', theme);
+            document.documentElement.setAttribute('data-menu-color', 'dark'); // Sidebar always dark
+            document.documentElement.setAttribute('data-topbar-color', theme);
+        })();
     </script>
 
     <!-- Theme Config Js -->
