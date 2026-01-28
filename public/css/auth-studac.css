@@ -1,15 +1,14 @@
 /* =====================================================
-   STUDAC AUTH PAGES - Glassmorphism Design System
+   STUDAC AUTH PAGES - Light Professional Design
+   Clean, Modern UI with Orange Accents
    ===================================================== */
 
-/* Brand Colors - Matching Main App */
+/* Brand Colors */
 :root {
-    --brand-primary: #7c3aed;
-    --brand-secondary: #ec4899;
-    --brand-accent: #00f5d4;
-    --glass-blur: 20px;
-    --glass-bg: rgba(20, 20, 40, 0.8);
-    --glass-border: rgba(124, 58, 237, 0.3);
+    --brand-primary: #f97316;
+    --brand-primary-dark: #ea580c;
+    --brand-secondary: #10b981;
+    --brand-accent: #f97316;
 }
 
 /* Auth Wrapper */
@@ -18,58 +17,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
 }
 
-/* Animated Gradient Background */
+/* Light Background */
 body {
-    background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: #f3f4f6;
     min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Floating Orbs Background */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(ellipse 80% 60% at 10% 10%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 50% at 90% 20%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 70% 40% at 50% 90%, rgba(0, 245, 212, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Grid Pattern Overlay */
+body::before,
 body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-    z-index: 0;
+    content: none;
 }
 
 /* Auth Background */
@@ -77,6 +37,7 @@ body::after {
     position: relative;
     min-height: 100vh;
     z-index: 1;
+    background: #f3f4f6;
 }
 
 .auth-bg.sign-in-bg-img,
@@ -84,37 +45,24 @@ body::after {
     background: transparent;
 }
 
-/* Auth background inherits gradient from body */
-
-/* Auth Card - Glassmorphism */
+/* Auth Card - White with subtle shadow */
 .auth-bg .card,
 .card.overflow-hidden {
     position: relative;
     z-index: 1;
-    background: linear-gradient(135deg, rgba(20, 20, 40, 0.9) 0%, rgba(30, 30, 63, 0.85) 100%) !important;
-    backdrop-filter: blur(25px) !important;
-    -webkit-backdrop-filter: blur(25px) !important;
-    border: 1px solid rgba(124, 58, 237, 0.3) !important;
-    border-radius: 20px !important;
-    box-shadow:
-        0 8px 32px rgba(124, 58, 237, 0.2),
-        0 0 60px rgba(124, 58, 237, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    transform: translateY(0) !important;
-    max-width: 450px;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.15s ease !important;
+    max-width: 420px;
     width: 100%;
     margin: 20px;
 }
 
 .auth-bg .card:hover,
 .card.overflow-hidden:hover {
-    transform: translateY(-8px) !important;
-    border-color: rgba(124, 58, 237, 0.5) !important;
-    box-shadow:
-        0 16px 48px rgba(124, 58, 237, 0.3),
-        0 0 80px rgba(124, 58, 237, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08), 0 15px 30px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Auth Brand Logo */
@@ -123,58 +71,55 @@ body::after {
 }
 
 .auth-brand img {
-    height: 50px;
-    filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.4));
+    height: 45px;
 }
 
 /* Typography */
 .auth-bg h3,
 .auth-bg .fw-semibold {
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: #1f2937 !important;
 }
 
 .auth-bg p {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: #6b7280 !important;
 }
 
 /* Form Labels */
 .auth-bg .form-label {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: #374151 !important;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 14px;
     margin-bottom: 6px;
 }
 
-/* Form Inputs - Glassmorphism */
+/* Form Inputs - Clean light style */
 .auth-bg .form-control,
 .auth-bg .form-select {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(124, 58, 237, 0.25) !important;
-    border-radius: 10px !important;
-    color: #ffffff !important;
-    padding: 12px 16px !important;
-    font-size: 0.95rem !important;
-    transition: all 0.3s ease !important;
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    color: #1f2937 !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    transition: all 0.15s ease !important;
 }
 
 .auth-bg .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: #9ca3af !important;
 }
 
 .auth-bg .form-control:focus,
 .auth-bg .form-select:focus {
-    background: rgba(255, 255, 255, 0.12) !important;
+    background: #ffffff !important;
     border-color: var(--brand-primary) !important;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 0 20px rgba(124, 58, 237, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1) !important;
     outline: none !important;
-    color: #ffffff !important;
 }
 
 /* Select dropdown options */
 .auth-bg .form-select option {
-    background: #1a1a2e;
-    color: #ffffff;
+    background: #ffffff;
+    color: #1f2937;
 }
 
 /* Form Validation */
@@ -183,97 +128,63 @@ body::after {
 }
 
 .auth-bg .invalid-feedback {
-    color: #fca5a5 !important;
-    font-size: 0.85rem;
+    color: #ef4444 !important;
+    font-size: 13px;
 }
 
 /* Error Alert */
 .auth-bg .alert {
-    background: rgba(239, 68, 68, 0.15) !important;
-    border: 1px solid rgba(239, 68, 68, 0.3) !important;
-    border-radius: 10px !important;
-    backdrop-filter: blur(10px);
+    background: #fef2f2 !important;
+    border: 1px solid #fecaca !important;
+    border-radius: 8px !important;
+    color: #dc2626 !important;
 }
 
-/* Studac Button - Gradient */
+/* Studac Button - Orange */
 .studac-btn,
 .glodex-login-btn {
-    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)) !important;
+    background: var(--brand-primary) !important;
     border: none !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     padding: 12px 24px !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
     color: #ffffff !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
-    position: relative;
-    overflow: hidden;
-}
-
-.studac-btn::before,
-.glodex-login-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
+    transition: all 0.15s ease !important;
 }
 
 .studac-btn:hover,
 .glodex-login-btn:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5), 0 0 40px rgba(124, 58, 237, 0.3) !important;
-    background: linear-gradient(135deg, #8b5cf6, #f472b6) !important;
-}
-
-.studac-btn:hover::before,
-.glodex-login-btn:hover::before {
-    left: 100%;
-}
-
-.studac-btn:active,
-.glodex-login-btn:active {
-    transform: translateY(0) !important;
+    background: var(--brand-primary-dark) !important;
 }
 
 /* Links */
 .auth-bg a {
-    color: var(--brand-accent) !important;
+    color: var(--brand-primary) !important;
     text-decoration: none !important;
-    transition: all 0.3s ease !important;
 }
 
 .auth-bg a:hover {
-    color: #ffffff !important;
-    text-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
-}
-
-.auth-bg .text-white a {
-    color: var(--brand-accent) !important;
+    color: var(--brand-primary-dark) !important;
 }
 
 /* Footer Text */
 .auth-bg .mt-auto {
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-size: 0.85rem;
+    color: #6b7280 !important;
+    font-size: 13px;
 }
 
 .auth-bg .text-gradient,
 .auth-bg .fw-bold.text-reset {
-    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary), var(--brand-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--brand-primary) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--brand-primary) !important;
 }
 
-/* Form Check (Remember me, Terms) */
+/* Form Check */
 .auth-bg .form-check-input {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(124, 58, 237, 0.4) !important;
+    background-color: #ffffff !important;
+    border-color: #d1d5db !important;
 }
 
 .auth-bg .form-check-input:checked {
@@ -282,75 +193,40 @@ body::after {
 }
 
 .auth-bg .form-check-label {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #6b7280 !important;
+    font-size: 14px;
 }
 
-/* Responsive Adjustments */
+/* Responsive */
 @media (max-width: 576px) {
     .auth-bg .card,
     .card.overflow-hidden {
         margin: 15px !important;
-        padding: 20px !important;
-        border-radius: 16px !important;
+        padding: 16px !important;
     }
 
     .auth-brand img {
-        height: 40px;
+        height: 38px;
     }
 
     .auth-bg h3 {
-        font-size: 1.5rem !important;
+        font-size: 1.25rem !important;
     }
 }
 
-/* Animation for card entrance */
+/* Simple entrance */
+.auth-bg .card,
+.card.overflow-hidden {
+    animation: cardEntrance 0.3s ease-out;
+}
+
 @keyframes cardEntrance {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.auth-bg .card,
-.card.overflow-hidden {
-    animation: cardEntrance 0.6s ease-out;
-}
-
-/* Glow effect on focus within card */
-.auth-bg .card:focus-within {
-    box-shadow:
-        0 8px 32px rgba(124, 58, 237, 0.25),
-        0 0 80px rgba(124, 58, 237, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Password field eye icon styling */
-.auth-bg .input-group-text {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(124, 58, 237, 0.25) !important;
-    border-left: none !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-}
-
-/* Divider styling */
-.auth-bg hr {
-    border-color: rgba(124, 58, 237, 0.2) !important;
-}
-
-/* Social login buttons (if needed) */
-.auth-bg .btn-social {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #ffffff !important;
-    border-radius: 10px !important;
-    transition: all 0.3s ease !important;
-}
-
-.auth-bg .btn-social:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-color: rgba(124, 58, 237, 0.4) !important;
 }

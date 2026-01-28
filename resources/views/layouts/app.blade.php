@@ -11,19 +11,19 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('images/studac-favicon.svg') }}">
 
-    <!-- Theme Initialization - Respects user preference, defaults to dark -->
+    <!-- Theme Initialization - Respects user preference, defaults to light -->
     <script>
         (function() {
-            // Check for saved theme preference or default to dark
+            // Check for saved theme preference or default to light (professional mode)
             const savedConfig = sessionStorage.getItem('__OSEN_CONFIG__');
-            let theme = 'dark'; // Default theme
+            let theme = 'light'; // Default theme - professional light mode
 
             if (savedConfig) {
                 try {
                     const config = JSON.parse(savedConfig);
-                    theme = config.theme || 'dark';
+                    theme = config.theme || 'light';
                 } catch(e) {
-                    theme = 'dark';
+                    theme = 'light';
                 }
             }
 
